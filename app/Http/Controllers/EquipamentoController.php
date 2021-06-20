@@ -42,7 +42,7 @@ class EquipamentoController extends Controller
     {
         $this->authorize('admin');
         $request->validate([
-            'ip' => 'required|ip',
+            'ip' => 'required|ip|unique:equipamentos,ip',
             'nome' => 'required'
           ]);
 

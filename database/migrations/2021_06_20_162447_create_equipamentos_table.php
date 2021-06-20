@@ -16,7 +16,7 @@ class CreateEquipamentosTable extends Migration
         Schema::create('equipamentos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('ip');
+            $table->string('ip')->unique();
             $table->string('nome');
 
             // api

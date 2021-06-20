@@ -18,7 +18,14 @@
         <td>{{ $equipamento->ip }}</td>
         <td>{{ $equipamento->nome }}</td>
         <td>Data</td>
-        <td><i class="fa fa-exclamation-triangle" aria-hidden="true" style="color:red;"></i></td>
+        <td>
+        @if($equipamento->ping_status == 'Up')
+            <i class="fas fa-check-circle" style="color:green;"></i>
+        @else
+            <i class="fa fa-exclamation-triangle" style="color:red;"></i>
+        @endif
+        
+        </td>
         @can('admin')
             <td>
             <form action="/equipamentos/{{ $equipamento->id }} " method="post">
