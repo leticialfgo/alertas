@@ -27,15 +27,12 @@ class EquipamentoController extends Controller
             return response('Unauthorized action.', 403);
         }
 
-        #return response()->json($request->ip);
-
         $equipamento = Equipamento::where('ip',$request->ip)->first();
         if($equipamento){
             $equipamento->ping_status = $request->ping_status;
             $equipamento->ping_date = $request->ping_date;
             $equipamento->save();
         }        
-        #abort(200);
         return  response(null, 200);
     }
 
