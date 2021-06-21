@@ -18,11 +18,13 @@ class CreateEquipamentosTable extends Migration
             $table->timestamps();
             $table->string('ip')->unique();
             $table->string('nome');
+            $table->string('source')->default('local'); # copaco ou outras possíveis fontes
 
             // api
             $table->string('ping_status')->nullable();
             $table->dateTime('ping_date')->nullable();
             $table->dateTime('ping_down_email_date')->nullable();
+
         });
     }
 
