@@ -6,11 +6,11 @@ Acabamos de perder conexão com o equipamento:
 <br>
 
 Conexão perdida em: {{ $equipamento->ping_date }}
-
+<br>
 Dentro de 24 horas se o problema não for solucionado enviaremos outro email.
 
 <br>
 ---
-Mensagem automática
-Seção Técnica de Informática
-FFLCH-USP
+Mensagem automática<br>
+Seção Técnica de Informática<br>
+FFLCH-USP<br>

@@ -36,7 +36,7 @@ class RememberJob implements ShouldQueue
     {
         $equipamentos = Equipamento::where('ping_status','Down')->get();
         if(!$equipamentos->isEmpty()) {
-            #Mail::queue(new EmailPingDownRemember($equipamentos));
+            Mail::queue(new EmailPingDownRemember($equipamentos));
         }
         
     }
