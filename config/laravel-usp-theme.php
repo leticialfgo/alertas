@@ -16,8 +16,15 @@ $right_menu = [
         'url' => config('app.url') . '/',
         'align' => 'right',
     ],
+    [
+        'text' => '<i class="fas fa-hard-hat"></i>',
+        'title' => 'Logs',
+        'target' => '_blank',
+        'url' => config('app.url') . '/logs',
+        'align' => 'right',
+        'can' => 'admin',
+    ],
 ];
-
 
 return [
     # valor default para a tag title, dentro da section title.
