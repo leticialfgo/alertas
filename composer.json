@@ -11,6 +11,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
+        "rap2hpoutre/laravel-log-viewer": "^1.7",
         "uspdev/laravel-usp-theme": "^2.1",
         "uspdev/senhaunica-socialite": "^3.0"
     },
