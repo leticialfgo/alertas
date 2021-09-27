@@ -22,8 +22,7 @@ class EquipamentoController extends Controller
 
     public function ping(Request $request)
     {
-        if($request->consumer_key != env('CONSUMER_KEY'))
-        {
+        if($request->header('Authorization') != env('CONSUMER_KEY')){
             return response('Unauthorized action.', 403);
         }
 

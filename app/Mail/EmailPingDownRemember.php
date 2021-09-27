@@ -30,7 +30,7 @@ class EmailPingDownRemember extends Mailable
      */
     public function build()
     {
-        $to = explode(',',env('NOTIFICAR_EMAILS'));
+        $to = explode(',',$this->equipamento->emails);
         $subject = "Lembrete Alerta " . date("d/m/Y H:i");;         
 
         return $this->view('emails.email_ping_down_remember')

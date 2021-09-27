@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Equipamento;
 use Illuminate\Http\Request;
+use App\Rules\MultipleEmailRule;
 
 class EquipamentoController extends Controller
 {
@@ -43,12 +44,14 @@ class EquipamentoController extends Controller
         $this->authorize('admin');
         $request->validate([
             'ip' => 'required|ip|unique:equipamentos,ip',
-            'nome' => 'required'
+            'nome' => 'required',
+            'emails' => ['required', new MultipleEmailRule]
           ]);
 
         $equipamento = new Equipamento;
         $equipamento->ip = $request->ip;
         $equipamento->nome = $request->nome;
+        $equipamento->emails = $request->emails;
         $equipamento->save();
         return redirect("/");
     }

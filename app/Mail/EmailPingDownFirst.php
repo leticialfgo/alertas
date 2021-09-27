@@ -31,7 +31,7 @@ class EmailPingDownFirst extends Mailable
      */
     public function build()
     {
-        $to = explode(',',env('NOTIFICAR_EMAILS'));
+        $to = explode(',',$this->equipamento->emails);
         $subject = "Alerta: perdemos conexão com " . $this->equipamento->ip;         
 
         return $this->view('emails.email_ping_down_first')
