@@ -9,7 +9,10 @@
       <th scope="col">Descrição</th>
       <th scope="col">Data do Ping</th>
       <th scope="col">Ping Status</th>
-      @can('admin') <th scope="col">Ações</th> @endcan
+      @can('admin') 
+        <th scope="col">Emails</th>
+        <th scope="col">Ações</th> 
+      @endcan
     </tr>
   </thead>
   <tbody>
@@ -17,7 +20,7 @@
     <tr>
         <td>{{ $equipamento->ip }}</td>
         <td>{{ $equipamento->nome }}</td>
-        <td>Data</td>
+        <td>{{ $equipamento->ping_date }}</td>
         <td>
         @if($equipamento->ping_status == 'Up')
             <i class="fas fa-check-circle" style="color:green;"></i>
@@ -27,6 +30,7 @@
         
         </td>
         @can('admin')
+            <td>{{ $equipamento->emails }}</td>
             <td>
             <form action="/equipamentos/{{ $equipamento->id }} " method="post">
                 @csrf
