@@ -75,7 +75,8 @@ class EquipamentoController extends Controller
      */
     public function edit(Equipamento $equipamento)
     {
-        //
+        $this->authorize('admin');
+        return view('equipamentos.edit')->with('equipamento', $equipamento);
     }
 
     /**
@@ -87,7 +88,14 @@ class EquipamentoController extends Controller
      */
     public function update(Request $request, Equipamento $equipamento)
     {
-        //
+        $this->authorize('admin');
+        $validated = $request->validate([
+            'ip' => 'required|ip',
+            'nome' => 'required',
+            'emails' => ['required', new MultipleEmailRule]
+          ]);          
+        $equipamento->update($validated);
+        return redirect('/');
     }
 
     /**
