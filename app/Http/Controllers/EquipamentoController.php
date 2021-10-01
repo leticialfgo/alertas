@@ -90,7 +90,7 @@ class EquipamentoController extends Controller
     {
         $this->authorize('admin');
         $validated = $request->validate([
-            'ip' => 'required|ip|unique:equipamentos,ip',
+            'ip' => 'required|ip',
             'nome' => 'required',
             'emails' => ['required', new MultipleEmailRule]
           ]);          
