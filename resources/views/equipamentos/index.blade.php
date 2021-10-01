@@ -35,8 +35,11 @@
             <form action="/equipamentos/{{ $equipamento->id }} " method="post">
                 @csrf
                 @method('delete')
-                <button type="submit" onclick="return confirm('Tem certeza?');"><i class="fas fa-trash-alt"></i></button> 
+                <a href="/equipamentos/{{ $equipamento->id }}/edit"><i class="fas fa-edit"></i></a>
+                <button type="submit" onclick="return confirm('Tem certeza?');" style="color: DodgerBlue;background-color: Transparent; border: none;cursor:pointer;overflow: hidden;outline:none;">
+                <i class="fas fa-trash-alt"></i></button> 
             </form>
+
             </td>
         @endcan
     </tr>
