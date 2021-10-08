@@ -1,12 +1,25 @@
 @extends('main')
 @section('content')
 
+<form method="get" action="/equipamentos">
+  <div class="row">
+    <div class=" col-sm input-group">
+      <input type="text" class="form-control" name="busca" value="{{Request()->busca}}" placeholder="Busca por número IP ou descrição">  
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-info"> Buscar </button>
+      </span>
+    </div>
+  </div>
+</form>
+
+<hr>
 
 <table class="table">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Ip</th>
       <th scope="col">Descrição</th>
+      <th scope="col">Atividade</th>
       <th scope="col">Data do Ping</th>
       <th scope="col">Ping Status</th>
       @can('admin') 
@@ -20,6 +33,13 @@
     <tr>
         <td>{{ $equipamento->ip }}</td>
         <td>{{ $equipamento->nome }}</td>
+        <td>
+        @if($equipamento->equipamentoativo)
+          Ativo
+        @else
+          Inativo
+        @endif
+        </td>
         <td>{{ $equipamento->ping_date }}</td>
         <td>
         @if($equipamento->ping_status == 'Up')
@@ -50,5 +70,7 @@
     @endforelse
   </tbody>
 </table>
+
+{{ $equipamentos->links() }}
 
 @endsection
