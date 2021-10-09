@@ -14,7 +14,7 @@ class AddColumnEquipamentoativoTableEquipamentos extends Migration
     public function up()
     {
         Schema::table('equipamentos', function (Blueprint $table) {
-            $table->boolean('equipamentoativo')->default(0);
+            $table->boolean('equipamentoativo')->nullable()->default(0);
         });
     }
 
