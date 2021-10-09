@@ -13,11 +13,27 @@ class EquipamentoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
+    if(isset($request->busca)) {
+
+        $equipamentos = Equipamento::where('ip','LIKE',"%{$request->busca}%")
+        ->orWhere('nome','LIKE',"%{$request->busca}%")->orderByDesc('equipamentoativo')->paginate(15);
+
         return view('equipamentos.index',[
-            'equipamentos' => Equipamento::all()
+            'equipamentos' => $equipamentos,
         ]);
+
+
+    } else {
+        
+
+        return view('equipamentos.index',[
+            'equipamentos' => Equipamento::orderByDesc('equipamentoativo')->paginate(15),
+        ]);
+
+        }
     }
 
     /**
@@ -52,6 +68,7 @@ class EquipamentoController extends Controller
         $equipamento->ip = $request->ip;
         $equipamento->nome = $request->nome;
         $equipamento->emails = $request->emails;
+        $equipamento->equipamentoativo = $request->equipamentoativo;
         $equipamento->save();
         return redirect("/");
     }
@@ -94,6 +111,7 @@ class EquipamentoController extends Controller
             'nome' => 'required',
             'emails' => ['required', new MultipleEmailRule]
           ]);          
+        $equipamento->equipamentoativo = $request->equipamentoativo;
         $equipamento->update($validated);
         return redirect('/');
     }
