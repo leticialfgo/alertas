@@ -16,13 +16,32 @@ class EquipamentoController extends Controller
     public function index(Request $request)
     {
 
-    if(isset($request->busca)) {
+    if ($request->busca != null && $request->buscaatividade != null){
+
+        $equipamentos = Equipamento::where('ip','LIKE',"%{$request->busca}%")
+        ->orWhere('nome','LIKE',"%{$request->busca}%")
+        ->where('equipamentoativo', $request->buscaatividade)->orderByDesc('equipamentoativo')->paginate(15);
+
+        return view('equipamentos.index',[
+        'equipamentos' => $equipamentos,
+        ]);
+
+    } else if(isset($request->busca)) {
 
         $equipamentos = Equipamento::where('ip','LIKE',"%{$request->busca}%")
         ->orWhere('nome','LIKE',"%{$request->busca}%")->orderByDesc('equipamentoativo')->paginate(15);
 
         return view('equipamentos.index',[
-            'equipamentos' => $equipamentos,
+        'equipamentos' => $equipamentos,
+        ]);
+
+
+    } else if(isset($request->buscaatividade)) {
+
+        $equipamentos = Equipamento::where('equipamentoativo', $request->buscaatividade)->orderByDesc('equipamentoativo')->paginate(15);
+
+        return view('equipamentos.index',[
+        'equipamentos' => $equipamentos,
         ]);
 
 

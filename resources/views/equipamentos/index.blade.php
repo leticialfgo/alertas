@@ -5,6 +5,20 @@
   <div class="row">
     <div class=" col-sm input-group">
       <input type="text" class="form-control" name="busca" value="{{Request()->busca}}" placeholder="Busca por número IP ou descrição">  
+
+      @inject('equipamento','App\Models\Equipamento')
+
+      <select name="buscaatividade" class="form-control">
+        <option value="" selected="">- Atividade do Equipamento -</option>
+        @foreach($equipamento->getAtivo() as $key=>$atividade)
+
+            <option value="{{$key}}" name="buscaatividade" 
+              @if($key == Request()->buscaatividade) selected @endif
+            >{{$atividade['name']}}</option>
+
+        @endforeach
+      </select>  
+
       <span class="input-group-btn">
         <button type="submit" class="btn btn-info"> Buscar </button>
       </span>

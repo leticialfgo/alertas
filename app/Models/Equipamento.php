@@ -16,4 +16,18 @@ class Equipamento extends Model
     {
         if($value) return Carbon::CreateFromFormat('Y-m-d H:i:s', $value)->format('d/m/Y H:i:s');
     }
+
+    public function getAtivo(){
+        $atividade = [
+            '1' => [
+                'name' => "Ativo",
+            ],
+            '0' => [
+                'name' => "Inativo",
+            ],
+        ];
+
+        return $atividade;
+    }
+
 }
